@@ -13,14 +13,10 @@ public class Payments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    @Column(name = "user_id")
+//    @Column(name = "user_id")
     private int userId;
-
     private double amount;
-
     private Status status;
-
     private PaymentMethod paymentMethod;
 
     public Payments() {
@@ -40,6 +36,30 @@ public class Payments {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
     @Override
