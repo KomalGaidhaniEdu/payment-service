@@ -3,32 +3,34 @@ package com.prep.paymentservice.entities;
 import com.prep.paymentservice.constants.PaymentMethod;
 import com.prep.paymentservice.constants.Status;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
 @Entity
 @Table(name = "payments")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Payments {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-//    @Column(name = "user_id")
     private int userId;
     private double amount;
     private Status status;
     private PaymentMethod paymentMethod;
 
-    public Payments() {
-    }
-
-    public Payments(int id, int userId, double amount, Status status, PaymentMethod paymentMethod) {
-        this.id = id;
-        this.userId = userId;
-        this.amount = amount;
-        this.status = status;
-        this.paymentMethod = paymentMethod;
-    }
+//    public Payments(int id, int userId, double amount, Status status, PaymentMethod paymentMethod) {
+//        this.id = id;
+//        this.userId = userId;
+//        this.amount = amount;
+//        this.status = status;
+//        this.paymentMethod = paymentMethod;
+//    }
 
     public double getAmount() {
         return amount;
