@@ -2,6 +2,7 @@ package com.prep.paymentservice.serviceImpl;
 
 import com.prep.paymentservice.dto.PaymentDTO;
 import com.prep.paymentservice.entities.Payments;
+import com.prep.paymentservice.exceptions.ResourceNotFoundException;
 import com.prep.paymentservice.repository.PaymentRepository;
 import com.prep.paymentservice.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +24,13 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public Payments getPayment(long id) {
         return paymentRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("payment with " + id + " not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("payment with " + id + " not found"));
     }
 
     @Override
     public Payments updatePayment(long id, PaymentDTO paymentDTO) {
         Payments oldPayment = paymentRepository.findById(id)
-                .orElseThrow(() ->  new RuntimeException("payment with " + id + " not found"));
+                .orElseThrow(() ->  new ResourceNotFoundException("payment with " + id + " not found"));
             Payments updatedPayment = Payments.builder()
                     .id(id)
                     .amount(oldPayment.getAmount())
@@ -41,7 +42,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public String deletePayment(long id) {
-        Payments payment =  paymentRepository.findById(id).orElseThrow(() ->  new RuntimeException("payment with " + id + " not found"));
+        Payments payment =  paymentRepository.findById(id).orElseThrow(() ->  new ResourceNotFoundException("payment with " + id + " not found"));
 
         paymentRepository.deleteById(id);
         return "payment with id " + id + " deleted";
