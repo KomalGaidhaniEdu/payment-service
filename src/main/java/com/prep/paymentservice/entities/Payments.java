@@ -3,36 +3,34 @@ package com.prep.paymentservice.entities;
 import com.prep.paymentservice.constants.PaymentMethod;
 import com.prep.paymentservice.constants.Status;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
 @Entity
 @Table(name = "payments")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Payments {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @Column(name = "user_id")
+    private long id;
     private int userId;
-
     private double amount;
-
     private Status status;
-
     private PaymentMethod paymentMethod;
 
-    public Payments() {
-    }
-
-    public Payments(int id, int userId, double amount, Status status, PaymentMethod paymentMethod) {
-        this.id = id;
-        this.userId = userId;
-        this.amount = amount;
-        this.status = status;
-        this.paymentMethod = paymentMethod;
-    }
+//    public Payments(int id, int userId, double amount, Status status, PaymentMethod paymentMethod) {
+//        this.id = id;
+//        this.userId = userId;
+//        this.amount = amount;
+//        this.status = status;
+//        this.paymentMethod = paymentMethod;
+//    }
 
     public double getAmount() {
         return amount;
@@ -40,6 +38,30 @@ public class Payments {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
     @Override
